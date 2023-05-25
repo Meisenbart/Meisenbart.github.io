@@ -1,35 +1,64 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Zufälliges Kaninchenbild</title>
     <style>
-        #rabbitImage {
-            max-width: 500px;
-            max-height: 500px;
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        img {
+            max-width: 90%;
+            height: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        #changeImageButton {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        #changeImageButton:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <button onclick="changeRabbitImage()">Neues Kaninchenbild</button>
-    <br/>
-    <img id="rabbitImage" src="" alt="Kaninchenbild wird geladen..."/>
+    <h1>Zufälliges Kaninchenbild</h1>
+    <img id="randomImage" src="" alt="Ein zufälliges Kaninchenbild wird hier angezeigt.">
+    <br>
+    <button id="changeImageButton">Neues Bild!</button>
+    
     <script>
-        // Du solltest diese Liste mit tatsächlichen URLs von Kaninchenbildern ersetzen.
         const rabbitImages = [
-             './20180713_143732.jpg', 
+            // Ersetze 'url1', 'url2', etc. durch URLs von Kaninchenbildern.
+              './20180713_143732.jpg', 
               './20180713_161043.jpg', 
              './P1110614.JPG', 
              './P1110653.JPG', 
             // ...
-         ];
+        ];
 
-        function changeRabbitImage() {
-            const randomIndex = Math.floor(Math.random() * rabbitImages.length);
-            document.getElementById('rabbitImage').src = rabbitImages[randomIndex];
+        function changeImage() {
+            const imageElement = document.getElementById('randomImage');
+            const randomImageUrl = rabbitImages[Math.floor(Math.random() * rabbitImages.length)];
+            imageElement.src = randomImageUrl;
         }
 
-        // Lade ein zufälliges Bild beim ersten Seitenaufruf
-        window.onload = changeRabbitImage;
+        document.getElementById('changeImageButton').addEventListener('click', changeImage);
+        
+        // Ein Bild beim Laden der Seite anzeigen.
+        window.addEventListener('load', changeImage);
     </script>
 </body>
 </html>
+
